@@ -14,7 +14,7 @@ README.md = Archivo resumen del proyecto
 ## Forma de trabajo
  Trabajaremos en base a ramas y versiones para la escalabilidad
 1. Para crear una rama:
- `git checkout -b <nombre-de-tu-rama>`
+ ```git checkout -b <nombre-de-tu-rama>```
 2. Para subir archivos:
  - Check en que rama estas `git branch`, te indicará con un " * ", donde 
  estas.
