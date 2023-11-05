@@ -10,7 +10,7 @@ public interface IProyectoService {
     List<Proyectos> findAllByCateogoría(String categoria);
     Optional<Proyectos> findById(int id);
     Optional<Proyectos> findByName(String name);
-    Optional<Proyectos> findByCoincidencia(String incompleto);
+    List<Proyectos> findByCoincidencia(String incompleto);
     List<Proyectos> findProyectosActivos(Boolean activo);
     List<Proyectos> findProyectosMasPopulares(int numero);
     List<Proyectos> findProyectosByCategoria(String category);

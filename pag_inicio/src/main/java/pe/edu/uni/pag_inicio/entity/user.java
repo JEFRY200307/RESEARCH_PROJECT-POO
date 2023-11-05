@@ -24,7 +24,9 @@ public class User {
     @Column(name = "Correo", unique = true)
     private String correo;
     @Column(name = "Tipo_cliente")
-    private String tipoCliente; // Puede ser "colaborador" o "creador de proyectos"
+    private String tipoCliente;
+    @Column(name = "Password")
+    private String password;// Puede ser "colaborador" o "creador de proyectos"
 
     // Getters y setters
     // Otras propiedades y métodos
@@ -33,22 +35,15 @@ public class User {
     @OneToMany(mappedBy = "Propietario")
     private List<Proyectos> proyectos;
 
-    public User(Long id, String nombre, String telefono, String correo, String tipoCliente) {
-        this.id = id;
-        this.nombre = nombre;
-        this.telefono = telefono;
-        this.correo = correo;
-        this.tipoCliente = tipoCliente;
-    }
-
     @Override
     public String toString() {
-        return "user{" +
+        return "User{" +
                 "id=" + id +
                 ", nombre='" + nombre + '\'' +
                 ", telefono='" + telefono + '\'' +
                 ", correo='" + correo + '\'' +
                 ", tipoCliente='" + tipoCliente + '\'' +
+                ", password='" + password + '\'' +
                 ", proyectos=" + proyectos +
                 '}';
     }
