@@ -5,6 +5,6 @@ import pe.edu.uni.pag_inicio.entity.Contacto;
 
 import java.io.Serializable;
 
-public interface ContactRepository extends JpaRepository<Contacto,Long> {
+public interface ContactRepository extends JpaRepository<Contacto, Integer> {
     public Contacto findById(int id);
 }
