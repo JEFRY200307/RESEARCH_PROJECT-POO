@@ -1,39 +1,39 @@
 package pe.edu.uni.pag_inicio.service;
 
-import pe.edu.uni.pag_inicio.entity.Colaboracion;
+import pe.edu.uni.pag_inicio.entity.OperacionesFinancieras;
 import pe.edu.uni.pag_inicio.entity.Proyectos;
-import pe.edu.uni.pag_inicio.entity.User;
+import pe.edu.uni.pag_inicio.entity.Usuarios;
 
 import java.util.List;
 
 public class ColaboradorService implements IColaboradorService{
     @Override
-    public void colaborarEnProyecto(User id, Proyectos proyecto, long monto) {
+    public void colaborarEnProyecto(Usuarios id, Proyectos proyecto, long monto) {
 
     }
 
     @Override
-    public List<Colaboracion> obtenerColaboracionesDeUsuario(int id_usuario) {
+    public List<OperacionesFinancieras> obtenerColaboracionesDeUsuario(int id_usuario) {
         return null;
     }
 
     @Override
-    public List<Colaboracion> obtenerColaboracionesEnProyecto(Proyectos proyecto) {
+    public List<OperacionesFinancieras> obtenerColaboracionesEnProyecto(Proyectos proyecto) {
         return null;
     }
 
     @Override
-    public double calcularMontoTotalContribuido(User usuario) {
+    public double calcularMontoTotalContribuido(Usuarios usuario) {
         return 0;
     }
 
     @Override
-    public void cancelarColaboracion(Colaboracion colaboracion) {
+    public void cancelarColaboracion(OperacionesFinancieras donaciones) {
 
     }
 
     @Override
-    public List<User> obtenerColaboradoresDeProyecto(Proyectos proyecto) {
+    public List<Usuarios> obtenerColaboradoresDeProyecto(Proyectos proyecto) {
         return null;
     }
 }

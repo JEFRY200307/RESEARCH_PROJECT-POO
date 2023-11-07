@@ -1,9 +1,9 @@
 package pe.edu.uni.pag_inicio.service;
 
-import pe.edu.uni.pag_inicio.entity.User;
+import pe.edu.uni.pag_inicio.entity.Usuarios;
 
 public interface IContactoService {
-    void registrarUsuario(User usuario);
-    void actualizarUsuario(User usuario);
-    void eliminarUsuario(User usuario);
+    void registrarUsuario(Usuarios usuario);
+    void actualizarUsuario(Usuarios usuario);
+    void eliminarUsuario(Usuarios usuario);
 }

@@ -1,20 +1,20 @@
 package pe.edu.uni.pag_inicio.service;
 
-import pe.edu.uni.pag_inicio.entity.User;
+import pe.edu.uni.pag_inicio.entity.Usuarios;
 
 public class ContactoService implements IContactoService{
     @Override
-    public void registrarUsuario(User usuario) {
+    public void registrarUsuario(Usuarios usuario) {
 
     }
 
     @Override
-    public void actualizarUsuario(User usuario) {
+    public void actualizarUsuario(Usuarios usuario) {
 
     }
 
     @Override
-    public void eliminarUsuario(User usuario) {
+    public void eliminarUsuario(Usuarios usuario) {
 
     }
 }

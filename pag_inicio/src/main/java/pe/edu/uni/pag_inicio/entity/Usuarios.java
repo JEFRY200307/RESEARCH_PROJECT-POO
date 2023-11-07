@@ -11,44 +11,39 @@ import java.util.List;
 @NoArgsConstructor
 @Data
 @Entity
-public class User {
+public class Usuarios {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 
-    @Column(name = "Id_usuario", unique = true)
+    @Column(name = "id_usuario", unique = true)
     private Long id;
-    @Column(name = "Nombre_usuario")
+    @Column(name = "nombre")
     private String nombre;
-    @Column(name = "Teléfono", unique = true)
+    @Column(name = "apellido")
+    private String apellido;
+    @Column(name = "telefono")
     private String telefono;
-    @Column(name = "Correo", unique = true)
-    private String correo;
-    @Column(name = "Tipo_cliente")
-    private String tipoCliente; // Puede ser "colaborador" o "creador de proyectos"
+    @Column(name = "email", unique = true)
+    private String email;
+    @Column(name = "contrasena")
+    private String contrasenae; // Puede ser "colaborador" o "creador de proyectos"
 
     // Getters y setters
     // Otras propiedades y métodos
 
     // Relación con proyectos (uno a muchos)
-    @OneToMany(mappedBy = "Propietario")
+    @OneToMany(mappedBy = "Usuarios")
     private List<Proyectos> proyectos;
-
-    public User(Long id, String nombre, String telefono, String correo, String tipoCliente) {
-        this.id = id;
-        this.nombre = nombre;
-        this.telefono = telefono;
-        this.correo = correo;
-        this.tipoCliente = tipoCliente;
-    }
 
     @Override
     public String toString() {
-        return "user{" +
+        return "Usuarios{" +
                 "id=" + id +
                 ", nombre='" + nombre + '\'' +
+                ", apellido='" + apellido + '\'' +
                 ", telefono='" + telefono + '\'' +
-                ", correo='" + correo + '\'' +
-                ", tipoCliente='" + tipoCliente + '\'' +
+                ", email='" + email + '\'' +
+                ", contrasenae='" + contrasenae + '\'' +
                 ", proyectos=" + proyectos +
                 '}';
     }
