@@ -28,22 +28,37 @@ public class Contacto {
     @Column(name = "mensaje", columnDefinition = "NVARCHAR(MAX)")
     private String mensaje;
 
-    @Column(name = "nombre_archivo", columnDefinition = "NVARCHAR(MAX)")
-    private String nombreArchivo;
-
     @Column(name = "fecha_envio")
     private Date fechaEnvio;
 
+    @Column(name = "estado_aprobacion")
+    private boolean estadoAprobacion;
+
+    @ManyToOne
+    @JoinColumn(name = "id_proyecto")
+    private Proyectos proyecto;
+
     @Override
     public String toString() {
-        return "Formularios{" +
-                "idFormulario=" + idcontacto +
+        return "Contacto{" +
+                "idcontacto=" + idcontacto +
                 ", usuario=" + usuario +
                 ", asunto='" + asunto + '\'' +
                 ", mensaje='" + mensaje + '\'' +
-                ", nombreArchivo='" + nombreArchivo + '\'' +
                 ", fechaEnvio=" + fechaEnvio +
+                ", estadoAprobacion=" + estadoAprobacion +
+                ", proyecto=" + proyecto +
                 '}';
     }
-// Agrega constructores, getters y setters, y otros métodos según sea necesario
+
+    public Contacto(Usuarios usuario, String asunto, String mensaje, Date fechaEnvio, boolean estadoAprobacion, Proyectos proyecto) {
+        this.usuario = usuario;
+        this.asunto = asunto;
+        this.mensaje = mensaje;
+        this.fechaEnvio = fechaEnvio;
+        this.estadoAprobacion = estadoAprobacion;
+        this.proyecto = proyecto;
+    }
+
+    // Agrega constructores, getters y setters, y otros métodos según sea necesario
 }

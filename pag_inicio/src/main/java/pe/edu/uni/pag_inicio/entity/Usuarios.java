@@ -26,7 +26,9 @@ public class Usuarios {
     @Column(name = "email", unique = true)
     private String email;
     @Column(name = "contrasena")
-    private String contrasenae; // Puede ser "colaborador" o "creador de proyectos"
+    private String contrasenae;
+    @Column(name = "rol")
+    private String rol;
 
     // Getters y setters
     // Otras propiedades y métodos
@@ -44,6 +46,7 @@ public class Usuarios {
                 ", telefono='" + telefono + '\'' +
                 ", email='" + email + '\'' +
                 ", contrasenae='" + contrasenae + '\'' +
+                ", rol='" + rol + '\'' +
                 ", proyectos=" + proyectos +
                 '}';
     }

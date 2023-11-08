@@ -1,9 +1,11 @@
 package pe.edu.uni.pag_inicio.service;
 
+import pe.edu.uni.pag_inicio.entity.Contacto;
 import pe.edu.uni.pag_inicio.entity.Usuarios;
 
+import java.util.List;
+
 public interface IContactoService {
-    void registrarUsuario(Usuarios usuario);
-    void actualizarUsuario(Usuarios usuario);
-    void eliminarUsuario(Usuarios usuario);
+    List<Contacto> getContactMessagesByUser(Usuarios usuario);
+    Contacto saveContactMessage(Contacto message);
 }

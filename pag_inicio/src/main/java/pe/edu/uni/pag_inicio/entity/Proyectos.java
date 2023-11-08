@@ -49,6 +49,8 @@ public class Proyectos {
 
     @Column(name = "categoria",nullable = false, length = 50)
     private String categoria;
+    @Column(name = "estado_aprobacion",nullable = false)
+    private boolean estado_aprobacion;
 
     @ManyToOne
     @JoinColumn(name = "id_usuario")
@@ -74,6 +76,7 @@ public class Proyectos {
                 ", monto_objetivo=" + monto_objetivo +
                 ", image_url='" + image_url + '\'' +
                 ", categoria='" + categoria + '\'' +
+                ", estado_aprobacion=" + estado_aprobacion +
                 ", usuario=" + usuario +
                 ", id_creador=" + id_creador +
                 '}';

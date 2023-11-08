@@ -15,14 +15,20 @@ public class Creador {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_creador")
     private int id_creador;
 
     @OneToOne
     @JoinColumn(name = "id_usuario")
     private Usuarios usuario;
 
+    @Column(name = "estadoCreador")
     private boolean estadoCreador;
 
+    @Column(name = "es_administrador")
+    private boolean esAdministrador;
+
+    @Column(name = "fecha_creacion")
     private Date fecha_creacion;
 
     @Override
@@ -31,9 +37,11 @@ public class Creador {
                 "id_creador=" + id_creador +
                 ", usuario=" + usuario +
                 ", estadoCreador=" + estadoCreador +
+                ", esAdministrador=" + esAdministrador +
                 ", fecha_creacion=" + fecha_creacion +
                 '}';
     }
-// getters and setters
+
+    // getters and setters
 }
 
