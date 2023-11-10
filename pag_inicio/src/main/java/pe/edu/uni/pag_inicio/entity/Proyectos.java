@@ -30,7 +30,7 @@ public class Proyectos {
     private String objetivos;
 
     @Column(name = "recaudacion",nullable = false)
-    private int recaudacion;
+    private double recaudacion;
 
     @Column(name = "fecha_inicio",nullable = false)
     private Date fecha_inicio;
@@ -42,7 +42,7 @@ public class Proyectos {
     private boolean estado;
 
     @Column(name = "monto_objetivo",nullable = false)
-    private int monto_objetivo;
+    private double monto_objetivo;
 
     @Column(name = "image_url",nullable = false, length = 250)
     private String image_url;

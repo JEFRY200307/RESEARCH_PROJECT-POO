@@ -16,7 +16,7 @@ public class Creador {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_creador")
-    private int id_creador;
+    private int idCreador;
 
     @OneToOne
     @JoinColumn(name = "id_usuario")
@@ -34,7 +34,7 @@ public class Creador {
     @Override
     public String toString() {
         return "Creador{" +
-                "id_creador=" + id_creador +
+                "id_creador=" + idCreador +
                 ", usuario=" + usuario +
                 ", estadoCreador=" + estadoCreador +
                 ", esAdministrador=" + esAdministrador +

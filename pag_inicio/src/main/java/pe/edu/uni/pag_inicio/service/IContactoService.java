@@ -1,11 +1,16 @@
 package pe.edu.uni.pag_inicio.service;
 
+import pe.edu.uni.pag_inicio.controller.dto.ContactoDTO;
+import pe.edu.uni.pag_inicio.controller.dto.ProyectoDTO;
 import pe.edu.uni.pag_inicio.entity.Contacto;
-import pe.edu.uni.pag_inicio.entity.Usuarios;
+import pe.edu.uni.pag_inicio.entity.Proyectos;
 
-import java.util.List;
+import java.util.Date;
+
 
 public interface IContactoService {
-    List<Contacto> getContactMessagesByUser(Usuarios usuario);
-    Contacto saveContactMessage(Contacto message);
+
+    void solicitarCreacion(ProyectoDTO proyectoDTO, ContactoDTO contactoDTO);
+    void solicitarModificacion(ProyectoDTO proyectoDTO, ContactoDTO contactoDTO);
+
 }
