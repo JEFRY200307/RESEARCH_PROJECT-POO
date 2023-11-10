@@ -9,5 +9,5 @@ import java.util.List;
 @Repository
 public interface CreadorRepository extends JpaRepository<Creador, Integer> {
     Creador findByIdCreador(int id);
-    List<Creador> findAllAdministradores();
+    Creador findByEsAdministradorAndEstadoCreador(boolean esAdministrador, boolean estadoCreador);
 }

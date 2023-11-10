@@ -4,14 +4,12 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Date;
-
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class ContactoDTO {
-    private String asunto;
-    private String mensaje;
-    private Date fechaEnvio;
-// Constructor, getters, and setters
+public class SolicitudCreacionDTO {
+    private ContactoDTO contactoDTO;
+    private ProyectoDTO proyectoDTO;
+
+    // Constructor, getters y setters
 }

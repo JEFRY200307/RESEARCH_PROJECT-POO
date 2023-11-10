@@ -19,8 +19,8 @@ public class Contacto {
     private int idcontacto;
 
     @ManyToOne
-    @JoinColumn(name = "id_usuario")
-    private Usuarios usuario;
+    @JoinColumn(name = "id_creador")
+    private Creador idcreador;
 
     @Column(name = "asunto")
     private String asunto;
@@ -33,6 +33,8 @@ public class Contacto {
 
     @Column(name = "estado_aprobacion")
     private boolean estadoAprobacion;
+    @Column(name = "id_administrador")
+    private int idadministrador;
 
     @ManyToOne
     @JoinColumn(name = "id_proyecto")
@@ -42,21 +44,23 @@ public class Contacto {
     public String toString() {
         return "Contacto{" +
                 "idcontacto=" + idcontacto +
-                ", usuario=" + usuario +
+                ", idcreador=" + idcreador +
                 ", asunto='" + asunto + '\'' +
                 ", mensaje='" + mensaje + '\'' +
                 ", fechaEnvio=" + fechaEnvio +
                 ", estadoAprobacion=" + estadoAprobacion +
+                ", idadministrador=" + idadministrador +
                 ", proyecto=" + proyecto +
                 '}';
     }
 
-    public Contacto(Usuarios usuario, String asunto, String mensaje, Date fechaEnvio, boolean estadoAprobacion, Proyectos proyecto) {
-        this.usuario = usuario;
+    public Contacto(Creador idcreador, String asunto, String mensaje, Date fechaEnvio, boolean estadoAprobacion, int idadministrador, Proyectos proyecto) {
+        this.idcreador = idcreador;
         this.asunto = asunto;
         this.mensaje = mensaje;
         this.fechaEnvio = fechaEnvio;
         this.estadoAprobacion = estadoAprobacion;
+        this.idadministrador = idadministrador;
         this.proyecto = proyecto;
     }
 

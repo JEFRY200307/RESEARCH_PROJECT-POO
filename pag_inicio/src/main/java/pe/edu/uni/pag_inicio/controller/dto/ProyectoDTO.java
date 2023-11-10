@@ -10,7 +10,6 @@ import java.util.Date;
 @NoArgsConstructor
 @Data
 public class ProyectoDTO {
-    private int  idCreador;
     private ContactoDTO contacto;
     private String titulo;
     private String descripcion;
@@ -21,5 +20,4 @@ public class ProyectoDTO {
     private Date fechaInicio;
     private String categoria;
     private double montoObjetivo;
-    private boolean estadoaprobacion;
 }

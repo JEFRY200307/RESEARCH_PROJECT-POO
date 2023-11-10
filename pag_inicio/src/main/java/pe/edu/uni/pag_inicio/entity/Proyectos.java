@@ -17,7 +17,7 @@ public class Proyectos {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_proyecto",unique = true)
+    @Column(name = "id_proyecto",unique = true, nullable = false)
     private int id_proyecto;
 
     @Column(name = "titulo",nullable = false, length = 200)
@@ -51,10 +51,9 @@ public class Proyectos {
     private String categoria;
     @Column(name = "estado_aprobacion",nullable = false)
     private boolean estado_aprobacion;
+    @Column(name = "id_administrador",nullable = false)
+    private int idadministrador;
 
-    @ManyToOne
-    @JoinColumn(name = "id_usuario")
-    private Usuarios usuario;
     @ManyToOne
     @JoinColumn(name = "id_creador")
     private Creador id_creador;
@@ -77,7 +76,6 @@ public class Proyectos {
                 ", image_url='" + image_url + '\'' +
                 ", categoria='" + categoria + '\'' +
                 ", estado_aprobacion=" + estado_aprobacion +
-                ", usuario=" + usuario +
                 ", id_creador=" + id_creador +
                 '}';
     }

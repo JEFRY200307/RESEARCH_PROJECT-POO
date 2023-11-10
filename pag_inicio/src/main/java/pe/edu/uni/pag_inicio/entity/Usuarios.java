@@ -11,6 +11,7 @@ import java.util.List;
 @NoArgsConstructor
 @Data
 @Entity
+@Table(name = "Usuarios")
 public class Usuarios {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,12 +31,9 @@ public class Usuarios {
     @Column(name = "rol")
     private String rol;
 
-    // Getters y setters
-    // Otras propiedades y métodos
-
     // Relación con proyectos (uno a muchos)
-    @OneToMany(mappedBy = "usuario")
-    private List<Proyectos> proyectos;
+    @OneToOne(mappedBy = "usuario")
+    private Creador creador;
 
     @Override
     public String toString() {
@@ -47,7 +45,6 @@ public class Usuarios {
                 ", email='" + email + '\'' +
                 ", contrasenae='" + contrasenae + '\'' +
                 ", rol='" + rol + '\'' +
-                ", proyectos=" + proyectos +
                 '}';
     }
 }

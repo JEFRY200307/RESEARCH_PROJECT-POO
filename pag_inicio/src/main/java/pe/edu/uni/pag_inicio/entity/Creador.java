@@ -6,6 +6,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.Date;
+import java.util.List;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
@@ -22,6 +24,10 @@ public class Creador {
     @JoinColumn(name = "id_usuario")
     private Usuarios usuario;
 
+    // Relación con proyectos (uno a muchos)
+    @OneToMany(mappedBy = "id_creador")
+    private List<Proyectos> proyectos;
+
     @Column(name = "estadoCreador")
     private boolean estadoCreador;
 
@@ -36,6 +42,7 @@ public class Creador {
         return "Creador{" +
                 "id_creador=" + idCreador +
                 ", usuario=" + usuario +
+                ", proyectos=" + proyectos +
                 ", estadoCreador=" + estadoCreador +
                 ", esAdministrador=" + esAdministrador +
                 ", fecha_creacion=" + fecha_creacion +
