@@ -15,8 +15,8 @@ public class Contacto {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_contacto",unique = true)
-    private int idcontacto;
+    @Column(name = "id",unique = true)
+    private int id;
 
     @ManyToOne
     @JoinColumn(name = "id_usuario")
@@ -37,7 +37,7 @@ public class Contacto {
     @Override
     public String toString() {
         return "Formularios{" +
-                "idFormulario=" + idcontacto +
+                "idFormulario=" + id +
                 ", usuario=" + usuario +
                 ", asunto='" + asunto + '\'' +
                 ", mensaje='" + mensaje + '\'' +
