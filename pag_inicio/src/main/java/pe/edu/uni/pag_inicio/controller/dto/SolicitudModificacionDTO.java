@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @Data
 public class SolicitudModificacionDTO {
     // Campos necesarios para la solicitud de modificación
-    private ProyectoModificacionDTO proyectoModificacionDTO;
+    private IdproyectoDTO idproyectoDTO;
     private ContactoDTO contactoDTO;
     // Getters y setters
 }

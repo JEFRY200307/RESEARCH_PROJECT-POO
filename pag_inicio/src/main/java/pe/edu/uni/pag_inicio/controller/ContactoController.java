@@ -6,9 +6,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import pe.edu.uni.pag_inicio.controller.dto.IdproyectoDTO;
 import pe.edu.uni.pag_inicio.controller.dto.SolicitudCreacionDTO;
 import pe.edu.uni.pag_inicio.controller.dto.SolicitudModificacionDTO;
 import pe.edu.uni.pag_inicio.service.ContactoService;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/contacto")
@@ -25,10 +28,23 @@ public class ContactoController {
         contactoService.solicitarCreacion(solicitudCreacionDTO);
         return ResponseEntity.ok("Proyecto creado correctamente. Pendiente de aprobación por parte del admin.");
     }
-    @PostMapping("/modificacion")
-    public ResponseEntity<String> solicitarModificacionProyecto(@RequestBody SolicitudModificacionDTO solicitud) {
-        contactoService.modificarProyecto(solicitud);
-        return new ResponseEntity<>("Solicitud de modificación enviada correctamente", HttpStatus.OK);
+    @PostMapping("/modificar")
+    public ResponseEntity<String> solicitarmodificion(@RequestBody SolicitudModificacionDTO solicitudModificacionDTO) {
+        try {
+            contactoService.solicitarmodificion(solicitudModificacionDTO);
+            return new ResponseEntity<>("Solicitud de modificación exitosa", HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>("Error al procesar la solicitud", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @GetMapping("/activos/{idCreador}")
+    public ResponseEntity<List<IdproyectoDTO>> obtenerProyectosActivosPorCreador(@PathVariable Long idCreador) {
+        List<IdproyectoDTO> proyectos = contactoService.obtenerProyectosActivosPorCreador(idCreador);
+        if (proyectos.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(proyectos, HttpStatus.OK);
     }
 
 }
