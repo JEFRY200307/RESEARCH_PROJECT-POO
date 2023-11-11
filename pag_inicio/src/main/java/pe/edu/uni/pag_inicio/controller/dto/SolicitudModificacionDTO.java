@@ -3,15 +3,13 @@ package pe.edu.uni.pag_inicio.controller.dto;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class SolicitudCreacionDTO {
+public class SolicitudModificacionDTO {
+    // Campos necesarios para la solicitud de modificación
+    private ProyectoModificacionDTO proyectoModificacionDTO;
     private ContactoDTO contactoDTO;
-    private ProyectoDTO proyectoDTO;
-    public ContactoDTO getContactoDTO() {
-        return contactoDTO;
-    }
-    // Constructor, getters y setters
+    // Getters y setters
 }
+

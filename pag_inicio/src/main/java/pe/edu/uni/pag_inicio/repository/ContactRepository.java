@@ -1,12 +1,14 @@
 package pe.edu.uni.pag_inicio.repository;
 
 import org.springframework.stereotype.Repository;
-import pe.edu.uni.pag_inicio.controller.dto.ContactoDTO;
-import pe.edu.uni.pag_inicio.controller.dto.ProyectoDTO;
+import org.springframework.transaction.annotation.Transactional;
+import pe.edu.uni.pag_inicio.controller.dto.SolicitudCreacionDTO;
+import pe.edu.uni.pag_inicio.controller.dto.SolicitudModificacionDTO;
 
 @Repository
 public interface ContactRepository {
-    void insertarProyecto(ProyectoDTO proyectoDTO);
+    void guardarProyecto(SolicitudCreacionDTO solicitudCreacionDTO);
 
-    void insertarContacto(ContactoDTO contactoDTO);
+    void modificarProyecto(SolicitudModificacionDTO solicitudModificacionDTO);
+
 }

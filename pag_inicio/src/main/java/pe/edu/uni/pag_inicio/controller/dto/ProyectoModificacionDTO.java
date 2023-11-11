@@ -4,19 +4,16 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Date;
+import java.sql.Date;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class ProyectoDTO {
-    private String titulo;
+public class ProyectoModificacionDTO {
+    private  String titulo;
     private String descripcion;
     private String objetivos;
     private Date fecha_fin;
     private String image_url;
-    private double recaudacion;
-    private Date fecha_inicio;
-    private String categoria;
-    private double monto_objetivo;
 }
+
