@@ -4,14 +4,12 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
 public class SolicitudCreacionDTO {
-    private ContactoDTO contactoDTO;
-    private ProyectoDTO proyectoDTO;
-    public ContactoDTO getContactoDTO() {
-        return contactoDTO;
-    }
-    // Constructor, getters y setters
+    private String email;
+    private String asunto;
+    private String mensaje;
+    // Constructor, getters, and setters
 }

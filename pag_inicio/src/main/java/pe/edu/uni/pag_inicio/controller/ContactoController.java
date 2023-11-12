@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import pe.edu.uni.pag_inicio.controller.dto.ContactoDTO;
 import pe.edu.uni.pag_inicio.controller.dto.IdproyectoDTO;
 import pe.edu.uni.pag_inicio.controller.dto.SolicitudCreacionDTO;
 import pe.edu.uni.pag_inicio.controller.dto.SolicitudModificacionDTO;
@@ -30,12 +31,11 @@ public class ContactoController {
     }
     @PostMapping("/modificar")
     public ResponseEntity<String> solicitarmodificion(@RequestBody SolicitudModificacionDTO solicitudModificacionDTO) {
-        try {
-            contactoService.solicitarmodificion(solicitudModificacionDTO);
-            return new ResponseEntity<>("Solicitud de modificación exitosa", HttpStatus.OK);
-        } catch (Exception e) {
-            return new ResponseEntity<>("Error al procesar la solicitud", HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+
+        // Llamar al servicio para solicitar la modificación del proyecto
+        contactoService.solicitarmodificion(solicitudModificacionDTO);
+
+        return new ResponseEntity<>("Solicitud de modificación exitosa", HttpStatus.OK);
     }
 
     @GetMapping("/activos/{idCreador}")
