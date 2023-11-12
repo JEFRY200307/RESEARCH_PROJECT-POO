@@ -6,7 +6,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import pe.edu.uni.pag_inicio.controller.dto.ContactoDTO;
 import pe.edu.uni.pag_inicio.controller.dto.IdproyectoDTO;
 import pe.edu.uni.pag_inicio.controller.dto.SolicitudCreacionDTO;
 import pe.edu.uni.pag_inicio.controller.dto.SolicitudModificacionDTO;
@@ -16,12 +15,12 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/contacto")
-public class ContactoController {
+public class CreadorController {
 
     private final ContactoService contactoService;
 
     @Autowired
-    public ContactoController(ContactoService contactoService) {
+    public CreadorController(ContactoService contactoService) {
         this.contactoService = contactoService;
     }
     @PostMapping("/crear")

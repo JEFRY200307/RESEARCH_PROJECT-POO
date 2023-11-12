@@ -10,6 +10,7 @@ import pe.edu.uni.pag_inicio.controller.dto.*;
 import pe.edu.uni.pag_inicio.service.AdminService;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/admin")
@@ -48,18 +49,16 @@ public class AdminController {
 
     @PutMapping("/actualizar/{id}")
     public ResponseEntity<ProyectoDTO> actualizarProyecto(@PathVariable int id, @RequestBody ProyectoDTO proyectoDTO) {
-        try {
-            ProyectoDTO proyectoActualizado = adminService.actualizarProyecto(id, proyectoDTO);
-            return new ResponseEntity<>(proyectoActualizado, HttpStatus.OK);
-        } catch (RuntimeException e) {
-            // Manejo de errores, puedes personalizar según tus necesidades
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+
+        ProyectoDTO proyectoActualizado = adminService.actualizarProyecto(id, proyectoDTO);
+        return new ResponseEntity<>(proyectoActualizado, HttpStatus.OK);
+
     }
 
     @DeleteMapping("/borrarproyecto/{id}")
-    public Mensajedto borrarProyecto(@PathVariable int id, @RequestParam String s) {
-        return adminService.borrarProyecto(id, s);
+    public ResponseEntity<String> borrarProyecto(@PathVariable int id) {
+        String mensaje = adminService.borrarProyecto(id);
+        return new ResponseEntity<>(mensaje, HttpStatus.OK);
     }
 
     @GetMapping("/operacionesfinancieras")
@@ -72,8 +71,18 @@ public class AdminController {
         return adminService.findAllRecompensas();
     }
 
-    @PostMapping("/respondercontacto/{id}")
-    public void responderContacto(@PathVariable int id, @RequestParam String respuesta) {
-        adminService.responderContacto(id, respuesta);
+    @PutMapping("/responderContacto/{idContacto}")
+    public ResponseEntity<String> responderContacto(@PathVariable int idContacto, @RequestBody MensajeAdminDTO mensajeAdminDTO) {
+        try {
+            MensajeAdminDTO respuesta = adminService.responderContacto(idContacto, mensajeAdminDTO);
+            if (respuesta != null) {
+                return new ResponseEntity<>("Respuesta enviada exitosamente", HttpStatus.OK);
+            } else {
+                return new ResponseEntity<>("No se encontró un contacto con ID " + idContacto, HttpStatus.NOT_FOUND);
+            }
+        } catch (RuntimeException e) {
+            // Manejo de errores, puedes personalizar según tus necesidades
+            return new ResponseEntity<>("Error al procesar la solicitud", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 }

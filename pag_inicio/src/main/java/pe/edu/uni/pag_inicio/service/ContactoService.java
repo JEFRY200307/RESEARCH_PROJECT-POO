@@ -2,11 +2,10 @@ package pe.edu.uni.pag_inicio.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import pe.edu.uni.pag_inicio.controller.dto.ContactoDTO;
 import pe.edu.uni.pag_inicio.controller.dto.IdproyectoDTO;
 import pe.edu.uni.pag_inicio.controller.dto.SolicitudCreacionDTO;
 import pe.edu.uni.pag_inicio.controller.dto.SolicitudModificacionDTO;
-import pe.edu.uni.pag_inicio.repository.ContactRepository;
+import pe.edu.uni.pag_inicio.repository.CreadorRepository;
 
 import java.util.List;
 
@@ -14,7 +13,7 @@ import java.util.List;
 public class ContactoService {
 
     @Autowired
-    private ContactRepository contactRepository;
+    private CreadorRepository contactRepository;
 
     public void solicitarCreacion(SolicitudCreacionDTO solicitudCreacionDTO) {
         contactRepository.solicitarguardarProyecto(solicitudCreacionDTO);

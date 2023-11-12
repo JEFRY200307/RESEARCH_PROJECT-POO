@@ -1,6 +1,7 @@
 package pe.edu.uni.pag_inicio.repository;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
@@ -9,9 +10,9 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import pe.edu.uni.pag_inicio.controller.dto.*;
 
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
 
 @Repository
@@ -142,23 +143,87 @@ public class AdminRepositoryImpl implements AdminRepository{
     }
 
     @Override
+    @Transactional(propagation = Propagation.REQUIRES_NEW, rollbackFor = Exception.class)
     public ProyectoDTO actualizarProyecto(int idProyecto, ProyectoDTO proyectoDTO) {
-        // Lógica para actualizar el proyecto en la base de datos
-        String sql = "UPDATE Proyectos SET titulo = ?, descripcion = ?, ... WHERE id_proyecto = ?";
-        jdbcTemplate.update(sql, proyectoDTO.getDescripcion(),proyectoDTO.getObjetivos(),proyectoDTO.getFecha_fin(),proyectoDTO.getImage_url(), idProyecto);
+        // Obtén la información actual del proyecto
+        ProyectoDTO proyectoActual = obtenerProyectoPorId(idProyecto);
 
-        // Puedes devolver el proyecto actualizado si es necesario
-        return proyectoDTO;
+        // Verifica qué campos se deben actualizar y construye la consulta SQL dinámicamente
+        StringBuilder sqlBuilder = new StringBuilder("UPDATE Proyectos SET ");
+        List<Object> parametros = new ArrayList<>();
+
+        if (proyectoDTO.getDescripcion() != null) {
+            sqlBuilder.append("descripcion = ?, ");
+            parametros.add(proyectoDTO.getDescripcion());
+        }
+
+        if (proyectoDTO.getObjetivos() != null) {
+            sqlBuilder.append("objetivos = ?, ");
+            parametros.add(proyectoDTO.getObjetivos());
+        }
+
+        if (proyectoDTO.getFecha_fin() != null) {
+            sqlBuilder.append("fecha_fin = ?, ");
+            parametros.add(proyectoDTO.getFecha_fin());
+        }
+
+        if (proyectoDTO.getImage_url() != null) {
+            sqlBuilder.append("image_url = ?, ");
+            parametros.add(proyectoDTO.getImage_url());
+        }
+
+        // Elimina la última coma de la consulta SQL
+        sqlBuilder.deleteCharAt(sqlBuilder.length() - 2);
+
+        sqlBuilder.append("WHERE id_proyecto = ?");
+        parametros.add(idProyecto);
+
+        // Convierte la lista de parámetros a un array
+        Object[] parametrosArray = parametros.toArray();
+
+        // Ejecuta la actualización en la base de datos y obtén el número de filas afectadas
+        int filasAfectadas = jdbcTemplate.update(sqlBuilder.toString(), parametrosArray);
+
+        // Si al menos una fila fue actualizada, devuelve el proyecto actualizado; de lo contrario, devuelve null
+        return filasAfectadas > 0 ? proyectoActual : null;
     }
+
+    private ProyectoDTO obtenerProyectoPorId(int idProyecto) {
+        String sql = "SELECT * FROM Proyectos WHERE id_proyecto = ?";
+
+        try {
+            return jdbcTemplate.queryForObject(sql, new Object[]{idProyecto}, (rs, rowNum) ->
+                    new ProyectoDTO(
+                            rs.getInt("id_proyecto"),
+                            rs.getString("titulo"),
+                            rs.getString("descripcion"),
+                            rs.getString("objetivos"),
+                            rs.getFloat("recaudacion"),
+                            rs.getDate("fecha_inicio"),
+                            rs.getDate("fecha_fin"),
+                            rs.getBoolean("estado"),
+                            rs.getFloat("monto_objetivo"),
+                            rs.getString("image_url"),
+                            rs.getString("categoria"),
+                            rs.getInt("id_creador"),
+                            rs.getInt("id_administrador")
+                    )
+            );
+        } catch (EmptyResultDataAccessException e) {
+            System.out.println("No se encontró ningún proyecto con la id");
+            return null;
+        }
+    }
+
     @Override
-    public Mensajedto borrarProyecto(int id, String s) {
+    public String borrarProyecto(int id) {
         String sql = "DELETE FROM Proyectos WHERE id_proyecto = ?";
         int filasBorradas = jdbcTemplate.update(sql, id);
 
         if (filasBorradas > 0) {
-            return new Mensajedto(1, "Proyecto borrado exitosamente.");
+            return "Proyecto borrado exitosamente.";
         } else {
-            return new Mensajedto(-1, "No se encontró un proyecto con ID " + id);
+            return "No se encontró un proyecto con ID " + id;
         }
     }
 
@@ -192,11 +257,19 @@ public class AdminRepositoryImpl implements AdminRepository{
     }
 
     @Override
-    public void responderContacto(int idContacto, String respuesta) {
-        // Consulta SQL para actualizar la respuesta en la tabla Contacto
-        String sql = "UPDATE Contacto SET respuesta = ? WHERE id_contacto = ?";
+    @Transactional
+    public MensajeAdminDTO responderContacto(int idContacto, MensajeAdminDTO mensajeAdminDTO) {
+        // Consulta SQL para actualizar la respuesta y el asunto de respuesta en la tabla Contacto
+        String sql = "UPDATE Contacto SET estado_aprobacion = ?, respuesta = ?, asunto_respuesta = ? WHERE id_contacto = ?";
 
         // Ejecutar la actualización
-        jdbcTemplate.update(sql, respuesta, idContacto);
+        jdbcTemplate.update(
+                sql,
+                mensajeAdminDTO.isEstadoAprobacion(),
+                mensajeAdminDTO.getRespuesta(),
+                mensajeAdminDTO.getAsuntoRespuesta(),
+                idContacto
+        );
+        return mensajeAdminDTO;
     }
 }

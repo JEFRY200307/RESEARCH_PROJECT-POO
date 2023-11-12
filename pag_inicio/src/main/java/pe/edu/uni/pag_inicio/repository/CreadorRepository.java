@@ -1,13 +1,19 @@
 package pe.edu.uni.pag_inicio.repository;
 
-import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-import pe.edu.uni.pag_inicio.entity.Contacto;
-import pe.edu.uni.pag_inicio.entity.Creador;
+import pe.edu.uni.pag_inicio.controller.dto.IdproyectoDTO;
+import pe.edu.uni.pag_inicio.controller.dto.SolicitudCreacionDTO;
+import pe.edu.uni.pag_inicio.controller.dto.SolicitudModificacionDTO;
+
 
 import java.util.List;
+
 @Repository
-public interface CreadorRepository extends JpaRepository<Creador, Integer> {
-    Creador findByIdCreador(int id);
-    Creador findByEsAdministradorAndEstadoCreador(boolean esAdministrador, boolean estadoCreador);
+public interface CreadorRepository {
+
+    void solicitarguardarProyecto(SolicitudCreacionDTO solicitudCreacionDTO);
+
+    void solicitarmodificarProyecto(SolicitudModificacionDTO solicitudModificacionDTO);
+
+    List<IdproyectoDTO> obtenerProyectosActivosPorCreador(Long idCreador);
 }

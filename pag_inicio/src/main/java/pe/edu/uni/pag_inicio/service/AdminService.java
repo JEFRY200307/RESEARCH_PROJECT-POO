@@ -32,8 +32,8 @@ public class AdminService {
     public ProyectoDTO actualizarProyecto(int idProyecto, ProyectoDTO proyectoDTO) {
         return adminRepository.actualizarProyecto(idProyecto, proyectoDTO);
     }
-    public Mensajedto borrarProyecto(int id, String s) {
-        return adminRepository.borrarProyecto(id, s);
+    public String borrarProyecto(int id) {
+        return adminRepository.borrarProyecto(id);
     }
 
     public List<OperacionesFinancierasDTO> findAllOperacionesFinancieras() {
@@ -43,9 +43,7 @@ public class AdminService {
         return adminRepository.findAllRecompensas();
     }
 
-    public void responderContacto(int idContacto, String respuesta) {
-        adminRepository.responderContacto(idContacto, respuesta);
+    public MensajeAdminDTO responderContacto(int idContacto,MensajeAdminDTO mensajeAdminDTO) {
+       return adminRepository.responderContacto(idContacto,mensajeAdminDTO);
     }
-
-
 }

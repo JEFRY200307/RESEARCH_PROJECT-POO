@@ -11,12 +11,12 @@ import pe.edu.uni.pag_inicio.controller.dto.SolicitudModificacionDTO;
 import java.util.List;
 
 @Repository
-public class ContactRepositoryImpl implements ContactRepository {
+public class CreadorRepositoryImpl implements CreadorRepository {
 
     private final JdbcTemplate jdbcTemplate;
 
     @Autowired
-    public ContactRepositoryImpl(JdbcTemplate jdbcTemplate) {
+    public CreadorRepositoryImpl(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
 
@@ -27,7 +27,7 @@ public class ContactRepositoryImpl implements ContactRepository {
         Integer idAdmin = obtenerIDAdmin();
         Integer idcreador = obtenerIDCreador(solicitudCreacionDTO.getEmail());
         // Insertar en la tabla Contacto
-        String contactoSql = "INSERT INTO Contacto (asunto, mensaje, id_administrador, id_creador, estado_aprobacion, estado_administrador, fecha_envio) VALUES (?, ?, ?, ?, 0, 0, GETDATE())";
+        String contactoSql = "INSERT INTO Contacto (asunto, mensaje, id_administrador, id_creador, estado_aprobacion,fecha_envio) VALUES (?, ?, ?, ?, 0, GETDATE())";
         jdbcTemplate.update(contactoSql,
                 solicitudCreacionDTO.getAsunto(),
                 solicitudCreacionDTO.getMensaje(),
@@ -54,7 +54,7 @@ public class ContactRepositoryImpl implements ContactRepository {
 
         // Verificar que se obtuvo el id del creador
         if (idCreador != null) {
-            String contactoSql = "INSERT INTO Contacto (asunto, mensaje,id_administrador, id_proyecto, id_creador, estado_aprobacion, estado_administrador, fecha_envio) VALUES (?, ?, ?, ?,?, 0, 0, GETDATE())";
+            String contactoSql = "INSERT INTO Contacto (asunto, mensaje,id_administrador, id_proyecto, id_creador, estado_aprobacion, fecha_envio) VALUES (?, ?, ?, ?,?, 0, GETDATE())";
             jdbcTemplate.update(contactoSql,
                     solicitudModificacionDTO.getContactoDTO().getAsunto(),
                     solicitudModificacionDTO.getContactoDTO().getMensaje(),

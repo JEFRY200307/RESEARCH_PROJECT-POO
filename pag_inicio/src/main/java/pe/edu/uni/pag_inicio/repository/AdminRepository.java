@@ -13,9 +13,9 @@ public interface AdminRepository {
     ProyectoDTO Crearproyecto(ProyectoDTO dto);
     ProyectoDTO actualizarProyecto(int idProyecto, ProyectoDTO proyectoDTO);
 
-    Mensajedto borrarProyecto(int id, String s);
+    String borrarProyecto(int id);
 
     List<OperacionesFinancierasDTO> findAllOperacionesFinancieras();
     List<RecompensaDTO> findAllRecompensas();
-    void responderContacto(int idContacto, String respuesta);
+    MensajeAdminDTO responderContacto(int idcreador, MensajeAdminDTO mensajeAdminDTO);
 }

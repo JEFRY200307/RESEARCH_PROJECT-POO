@@ -7,7 +7,10 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Mensajedto {
-    private  int id;
-    private String mensaje;
+public class MensajeAdminDTO {
+    private  int idcreador;
+    private boolean estadoAprobacion;
+    private String respuesta;
+    private String asuntoRespuesta;
+
 }
