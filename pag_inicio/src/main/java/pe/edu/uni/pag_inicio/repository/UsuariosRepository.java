@@ -15,7 +15,7 @@ public class UsuariosRepository {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    public Usuarios findByEmail(String email) {
+    public Usuarios findByCorreo(String email) {
         String query = "SELECT * FROM Usuarios WHERE email = ?";
         return jdbcTemplate.queryForObject(query, new Object[]{email}, (resultSet, rowNum) -> {
             Usuarios usuario = new Usuarios();

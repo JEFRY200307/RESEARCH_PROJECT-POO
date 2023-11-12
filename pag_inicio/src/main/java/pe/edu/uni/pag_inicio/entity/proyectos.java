@@ -17,7 +17,7 @@ public class Proyectos {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "titulo",unique = true)
+    @Column(name = "id_proyecto",unique = true)
     private int id_proyecto;
 
     @Column(name = "titulo",nullable = false, length = 200)
@@ -56,6 +56,10 @@ public class Proyectos {
     @ManyToOne
     @JoinColumn(name = "id_creador")
     private Creador id_creador;
+
+    @ManyToOne
+    @JoinColumn(name = "propietario_id")  // Ajusta esto según tu modelo de base de datos
+    private User propietario;
 
     // Constructor, getters, and setters
 

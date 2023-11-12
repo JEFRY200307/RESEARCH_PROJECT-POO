@@ -32,7 +32,7 @@ public class User {
     // Otras propiedades y métodos
 
     // Relación con proyectos (uno a muchos)
-    @OneToMany(mappedBy = "Propietario")
+    @OneToMany(mappedBy = "propietario")
     private List<Proyectos> proyectos;
 
     @Override

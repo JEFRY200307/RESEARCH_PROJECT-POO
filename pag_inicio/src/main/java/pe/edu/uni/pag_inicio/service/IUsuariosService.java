@@ -15,5 +15,5 @@ public interface IUsuariosService {
 
     List<Usuarios> getAllUsers();
 
-    void deleteUser(int userId);
+    void deleteUser(Long userId);
 }

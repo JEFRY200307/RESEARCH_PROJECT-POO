@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pe.edu.uni.pag_inicio.entity.Usuarios;
 import pe.edu.uni.pag_inicio.repository.UsuariosRepository;
-import pe.edu.uni.pag_inicio.service.IUsuariosService;
 
 import java.util.List;
 
@@ -39,7 +38,7 @@ public class UsuariosService implements IUsuariosService {
     @Override
     public Usuarios getUserByEmail(String email) {
         // Agregar lógica para obtener un usuario por su dirección de correo electrónico desde el repositorio
-        return usuariosRepository.findByEmail(email);
+        return usuariosRepository.findByCorreo(email);
     }
 
     @Override
@@ -49,7 +48,7 @@ public class UsuariosService implements IUsuariosService {
     }
 
     @Override
-    public void deleteUser(int userId) {
+    public void deleteUser(Long userId) {
         // Agregar lógica para eliminar un usuario por su ID desde el repositorio
         usuariosRepository.deleteById(userId);
     }
