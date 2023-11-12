@@ -4,13 +4,16 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.sql.Date;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class RecompensaDTO {
-    private int idRecompensa;
+public class OperacionesFinancierasDTO {
+    private int idOperacion;
     private int idProyecto;
-    private String tipoNivel;
-    private String nombreRecompensa;
-    private float valorRecompensa;
+    private int idUsuario;
+    private float monto;
+    private Date fechaOperacion;
+    private int valoracion;
 }

@@ -1,20 +1,21 @@
 package pe.edu.uni.pag_inicio.repository;
 
-import pe.edu.uni.pag_inicio.entity.*;
+import pe.edu.uni.pag_inicio.controller.dto.*;
 
 import java.util.List;
 
 public interface AdminRepository {
-    List<Proyectos> findAllProyectos();
-    List<Usuarios> findAllUsuarios();
-    List<Creador> findAllCreadores();
-    List<MetodoPago> findAllMetodosPago();
-    void aprobarProyecto(int idProyecto, boolean aprobar);
-    void bloquearCreador(int idCreador, boolean bloquear);
-    void agregarAdministrador(int idUsuario, boolean esAdmin);
-    List<OperacionesFinancieras> findAllOperacionesFinancieras();
-    List<Recompensas> findAllRecompensas();
+    List<ProyectoDTO> findAllProyectos();
+    List<UsuarioDTO> findAllUsuarios();
+    List<CreadorDTO> findAllCreadores();
+    List<MetodoPagoDTO> findAllMetodosPago();
+
+    ProyectoDTO Crearproyecto(ProyectoDTO dto);
+    ProyectoDTO actualizarProyecto(int idProyecto, ProyectoDTO proyectoDTO);
+
+    Mensajedto borrarProyecto(int id, String s);
+
+    List<OperacionesFinancierasDTO> findAllOperacionesFinancieras();
+    List<RecompensaDTO> findAllRecompensas();
     void responderContacto(int idContacto, String respuesta);
-
-
 }
