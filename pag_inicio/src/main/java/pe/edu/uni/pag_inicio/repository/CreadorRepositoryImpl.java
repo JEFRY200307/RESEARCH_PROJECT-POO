@@ -58,8 +58,7 @@ public class CreadorRepositoryImpl implements CreadorRepository {
                     solicitudModificacionDTO.getContactoDTO().getAsunto(),
                     solicitudModificacionDTO.getContactoDTO().getMensaje(),
                     idAdmin,
-                    solicitudModificacionDTO.getIdproyectoDTO().getIdProyecto()
-                    );
+                    solicitudModificacionDTO.getIdproyectoDTO().getIdProyecto());
         } else {
             // Manejar la situación en la que no se puede obtener el id del creador (puedes lanzar una excepción, loggear, etc.)
             // Aquí, simplemente imprimo un mensaje de error

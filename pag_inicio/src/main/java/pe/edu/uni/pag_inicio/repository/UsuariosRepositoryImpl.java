@@ -33,7 +33,8 @@ public class UsuariosRepositoryImpl implements UsuariosRepository{
         });
     }
     @Override
-    public UsuarioDTO findById(long userId) {
+
+    public UsuarioDTO findById(int userId) {
         String query = "SELECT * FROM Usuarios WHERE id_usuario = ?";
         return jdbcTemplate.queryForObject(query, new Object[]{userId}, (resultSet, rowNum) -> {
             UsuarioDTO usuario = new UsuarioDTO();

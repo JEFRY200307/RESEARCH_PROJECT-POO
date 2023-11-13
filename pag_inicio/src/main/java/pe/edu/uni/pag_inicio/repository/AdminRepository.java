@@ -1,7 +1,5 @@
 package pe.edu.uni.pag_inicio.repository;
 
-import org.springframework.transaction.annotation.Propagation;
-import org.springframework.transaction.annotation.Transactional;
 import pe.edu.uni.pag_inicio.controller.dto.*;
 
 import java.util.List;

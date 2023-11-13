@@ -13,15 +13,12 @@ import java.util.List;
 public interface UsuariosRepository {
 
     UsuarioDTO findByEmail(String email);
-
-
-    UsuarioDTO findById(long userId);
+    UsuarioDTO findById(int userId);
 
     UsuarioDTO save(UsuarioDTO usuario);
 
     UsuarioDTO update(int idUsuario, UsuarioDTO usuarioDTO);
 
     Mensajedto deleteById(int userId);
-
     List<UsuarioDTO> findAll();
 }

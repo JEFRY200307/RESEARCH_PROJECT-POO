@@ -81,7 +81,6 @@ public class AdminRepositoryImpl implements AdminRepository{
         String sql = "SELECT * FROM MetodoPago";
         return jdbcTemplate.query(sql, (rs, rowNum) ->
                 new MetodoPagoDTO(
-                        rs.getInt("id_metodopago"),
                         rs.getInt("id_usuario"),
                         rs.getString("tipo_tarjeta"),
                         rs.getString("nombre_titular"),
@@ -232,7 +231,6 @@ public class AdminRepositoryImpl implements AdminRepository{
         String sql = "SELECT * FROM OperacionesFinancieras";
         return jdbcTemplate.query(sql, (rs, rowNum) ->
                 new OperacionesFinancierasDTO(
-                        rs.getInt("id_operacion"),
                         rs.getInt("id_proyecto"),
                         rs.getInt("id_usuario"),
                         rs.getFloat("monto"),

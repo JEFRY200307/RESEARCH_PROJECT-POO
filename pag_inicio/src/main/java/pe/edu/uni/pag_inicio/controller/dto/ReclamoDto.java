@@ -1,20 +1,18 @@
 package pe.edu.uni.pag_inicio.controller.dto;
 
+import java.sql.Date;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.sql.Date;
-
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-
-public class MetodoPagoDTO{
+public class ReclamoDto {
+    private int id_reclamo;
     private int id_usuario;
-    private String tipo_tarjeta;
-    private String nombre_titular;
-    private float pago;
-    private Date fecha_expiracion;
-    private String cvv;
+    private String mensaje;
+    private String tipo_reclamo;
+    private Date fecha_reclamo;
+
 }

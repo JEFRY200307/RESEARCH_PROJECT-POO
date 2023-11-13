@@ -10,7 +10,6 @@ import java.sql.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 public class OperacionesFinancierasDTO {
-    private int idOperacion;
     private int idProyecto;
     private int idUsuario;
     private float monto;
