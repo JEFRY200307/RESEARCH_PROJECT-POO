@@ -2,21 +2,26 @@ package pe.edu.uni.pag_inicio.repository;
 
 
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
+import pe.edu.uni.pag_inicio.controller.dto.Mensajedto;
 import pe.edu.uni.pag_inicio.controller.dto.UsuarioDTO;
 
 import java.util.List;
-import java.util.Optional;
 
 @Repository
 public interface UsuariosRepository {
 
     UsuarioDTO findByEmail(String email);
 
-    Optional<UsuarioDTO> findById(long userId);
+
+    UsuarioDTO findById(long userId);
 
     UsuarioDTO save(UsuarioDTO usuario);
 
-    void deleteById(long userId);
+    UsuarioDTO update(int idUsuario, UsuarioDTO usuarioDTO);
+
+    Mensajedto deleteById(int userId);
 
     List<UsuarioDTO> findAll();
 }
