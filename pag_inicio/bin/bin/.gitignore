@@ -4,11 +4,7 @@ target/
 !**/src/main/**/target/
 !**/src/test/**/target/
 ### Configuracion personal
-<<<<<<< HEAD
-/src/main/resources/
-=======
 application.properties
->>>>>>> miguel
 ###
 ### STS ###
 .apt_generated
