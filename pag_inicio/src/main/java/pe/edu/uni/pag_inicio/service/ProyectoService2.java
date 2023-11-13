@@ -34,7 +34,7 @@ public class ProyectoService2 {
         }
 		
      // Registrar proyecto
-        final String sqlProyecto = "insert into Proyectos (titulo, descripcion, objetivos, recaudacion, fecha_inicio, fecha_fin, estado, monto_objetivo, id_usuario, id_creador, image_url, categoria) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String sqlProyecto = "insert into Proyectos (titulo, descripcion, objetivos, recaudacion, fecha_inicio, fecha_fin, estado, monto_objetivo, id_usuario, id_creador, image_url, categoria) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         KeyHolder keyHolder = new GeneratedKeyHolder();
         jdbcTemplate.update(

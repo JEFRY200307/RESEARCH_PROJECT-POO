@@ -22,7 +22,7 @@ public class ProyectoController {
 
     @PostMapping("/crear")
     public Mensajedto crearProyecto(@RequestBody Proyectodto dto) {
-        Mensajedto mensaje = null; new Mensajedto(1, "Proceso ok." );
+    	Mensajedto mensaje = null;
         try {
             dto = proyService.Crearpro(dto);
             mensaje = new Mensajedto(1,"Proyecto creado correctamente: " + dto.getId_proyecto());
@@ -31,7 +31,7 @@ public class ProyectoController {
         }
         return mensaje;
     }
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/eliminar/{id}")
     public Mensajedto borrarProyecto(@PathVariable int id) {
         return proyService.borrarProyecto(id);
     }

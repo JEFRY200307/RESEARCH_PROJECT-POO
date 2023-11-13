@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 public class Mensajedto {
 		
 	private Integer codigo; // 1: ok -1: error
-	private String mensaje; // Mensaje al usuario
+	private String mensaje; 
 
 }
 
