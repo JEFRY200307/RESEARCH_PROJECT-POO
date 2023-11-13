@@ -46,4 +46,10 @@ public class AdminService {
     public MensajeAdminDTO responderContacto(int idContacto,MensajeAdminDTO mensajeAdminDTO) {
        return adminRepository.responderContacto(idContacto,mensajeAdminDTO);
     }
+    public RecompensaDTO crearRecompensa(RecompensaDTO recompensaDto, int idProyecto){
+        return  adminRepository.crearRecompensa(recompensaDto,idProyecto);
+    }
+    public Mensajedto borrarRecompensa(int idRecompensa){
+        return adminRepository.borrarRecompensa(idRecompensa);
+    }
 }

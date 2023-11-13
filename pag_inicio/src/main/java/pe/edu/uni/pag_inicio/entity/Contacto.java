@@ -15,8 +15,8 @@ public class Contacto {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_contacto",unique = true)
-    private int idcontacto;
+    @Column(name = "id",unique = true)
+    private int id;
 
     @ManyToOne
     @JoinColumn(name = "id_creador")
@@ -43,7 +43,7 @@ public class Contacto {
     @Override
     public String toString() {
         return "Contacto{" +
-                "idcontacto=" + idcontacto +
+                "id=" + id +
                 ", idcreador=" + idcreador +
                 ", asunto='" + asunto + '\'' +
                 ", mensaje='" + mensaje + '\'' +

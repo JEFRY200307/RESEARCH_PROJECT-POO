@@ -17,8 +17,9 @@ public class Proyectos {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     @Column(name = "id_proyecto",unique = true, nullable = false)
-    private int id_proyecto;
+    private  int idproyecto;
 
     @Column(name = "titulo",nullable = false, length = 200)
     private String titulo;
@@ -64,7 +65,7 @@ public class Proyectos {
     @Override
     public String toString() {
         return "Proyectos{" +
-                "id_proyecto=" + id_proyecto +
+                "id_proyecto=" + idproyecto +
                 ", titulo='" + titulo + '\'' +
                 ", descripcion='" + descripcion + '\'' +
                 ", objetivos='" + objetivos + '\'' +

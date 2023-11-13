@@ -34,7 +34,6 @@ public class Usuarios {
     // Relación con proyectos (uno a muchos)
     @OneToOne(mappedBy = "usuario")
     private Creador creador;
-
     @Override
     public String toString() {
         return "Usuarios{" +

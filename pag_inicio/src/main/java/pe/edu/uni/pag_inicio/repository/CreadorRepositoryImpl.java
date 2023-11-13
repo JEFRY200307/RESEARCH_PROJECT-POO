@@ -1,12 +1,11 @@
 package pe.edu.uni.pag_inicio.repository;
 
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
-import pe.edu.uni.pag_inicio.controller.dto.IdproyectoDTO;
-import pe.edu.uni.pag_inicio.controller.dto.SolicitudCreacionDTO;
-import pe.edu.uni.pag_inicio.controller.dto.SolicitudModificacionDTO;
+import pe.edu.uni.pag_inicio.controller.dto.*;
 
 import java.util.List;
 

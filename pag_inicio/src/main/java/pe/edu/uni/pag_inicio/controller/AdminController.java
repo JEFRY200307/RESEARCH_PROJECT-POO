@@ -85,4 +85,25 @@ public class AdminController {
             return new ResponseEntity<>("Error al procesar la solicitud", HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+    @PostMapping("/insertarRecompensa/{idProyecto}")
+    public Mensajedto crearRecompensa(@RequestBody RecompensaDTO dto, @PathVariable int idProyecto) {
+        Mensajedto mensaje;
+        try {
+            dto = adminService.crearRecompensa(dto, idProyecto);
+            mensaje = new Mensajedto(1, "Recompensa creada correctamente: " + dto.getTipo_nivel());
+        } catch (RuntimeException e) {
+            mensaje = new Mensajedto(-1, "Error al crear la recompensa: " + e.getMessage());
+        }
+        return mensaje;
+    }
+    @DeleteMapping("/borrarRecompensa/{idRecompensa}")
+    public ResponseEntity<Mensajedto> borrarRecompensa(@PathVariable int idRecompensa) {
+        Mensajedto resultado = adminService.borrarRecompensa(idRecompensa);
+
+        if (resultado.getCodigo() == 1) {
+            return new ResponseEntity<>(resultado, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(resultado, HttpStatus.NOT_FOUND);
+        }
+    }
 }

@@ -12,23 +12,14 @@ import java.sql.Date;
 public class ProyectoDTO {
     private int idproyecto;
     private String titulo;
-
     private String descripcion;
-
     private String objetivos;
-
     private float recaudacion;
-
     private Date fecha_inicio;
-
     private Date fecha_fin;
-
     private boolean estado;
-
     private float monto_objetivo;
-
     private String image_url;
-
     private String categoria;
     private int idcreador;
     private int idadministrador;

@@ -1,5 +1,7 @@
 package pe.edu.uni.pag_inicio.repository;
 
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 import pe.edu.uni.pag_inicio.controller.dto.*;
 
 import java.util.List;
@@ -18,4 +20,8 @@ public interface AdminRepository {
     List<OperacionesFinancierasDTO> findAllOperacionesFinancieras();
     List<RecompensaDTO> findAllRecompensas();
     MensajeAdminDTO responderContacto(int idcreador, MensajeAdminDTO mensajeAdminDTO);
+
+    RecompensaDTO crearRecompensa(RecompensaDTO recompensaDto, int idProyecto);
+
+    Mensajedto borrarRecompensa(int idRecompensa);
 }
