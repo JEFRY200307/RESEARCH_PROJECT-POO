@@ -1,0 +1,95 @@
+CREATE TABLE Usuarios
+(
+  id_usuario INT NOT NULL PRIMARY KEY IDENTITY,
+  nombre NVARCHAR(250) NOT NULL,
+  apellido NVARCHAR(250) NOT NULL,
+  telefono NVARCHAR(10) NOT NULL,
+  email NVARCHAR(200) NOT NULL,
+  contrasena NVARCHAR(250) NOT NULL,
+  rol NVARCHAR(20) CHECK (rol IN ('creador','admin')) NOT NULL
+);
+CREATE TABLE Creador
+(
+  id_creador INT NOT NULL PRIMARY KEY IDENTITY,
+  id_usuario INT NOT NULL,
+  estadoCreador BIT NOT NULL,
+  es_administrador BIT NOT NULL,  
+  fecha_creacion DATETIME NOT NULL,
+  FOREIGN KEY (id_usuario) REFERENCES Usuarios(id_usuario)
+);
+
+CREATE TABLE MetodoPago
+(
+  id_metodopago INT NOT NULL PRIMARY KEY IDENTITY,
+  id_usuario INT NOT NULL,
+  tipo_tarjeta NVARCHAR(250) NOT NULL,
+  nombre_titular NVARCHAR(250) NOT NULL,
+  pago FLOAT NOT NULL,
+  fecha_expiracion DATE NOT NULL,
+  cvv NVARCHAR(200) NOT NULL,
+  FOREIGN KEY (id_usuario) REFERENCES Usuarios(id_usuario)
+);
+
+CREATE TABLE Proyectos
+(
+  id_proyecto INT NOT NULL PRIMARY KEY IDENTITY,
+  titulo NVARCHAR(200) NOT NULL,
+  descripcion NVARCHAR(MAX) NOT NULL ,
+  objetivos NVARCHAR(MAX) NOT NULL,
+  recaudacion FLOAT NOT NULL,
+  fecha_inicio DATE NOT NULL,
+  fecha_fin DATE NOT NULL,
+  estado BIT NOT NULL,
+  monto_objetivo FLOAT NOT NULL,
+  image_url NVARCHAR(250) NOT NULL,
+  id_creador INT NOT NULL,
+  categoria NVARCHAR(50) CHECK (categoria IN ('MA','TEC','INV','RS')) NOT NULL,
+  id_administrador INT NOT NULL,   
+  FOREIGN KEY (id_creador) REFERENCES Creador(id_creador),
+  FOREIGN KEY (id_administrador) REFERENCES Creador(id_creador)
+);
+
+CREATE TABLE OperacionesFinancieras (
+  id_operacion INT NOT NULL PRIMARY KEY IDENTITY,
+  id_proyecto INT NOT NULL,
+  id_usuario INT NOT NULL,
+  monto FLOAT NOT NULL,
+  fecha_operacion DATETIME NOT NULL,
+  valoracion INT NOT NULL,
+  FOREIGN KEY (id_proyecto) REFERENCES Proyectos(id_proyecto),
+  FOREIGN KEY (id_usuario ) REFERENCES Usuarios(id_usuario)
+);
+
+CREATE TABLE Recompensas (
+  id_recompensa INT NOT NULL PRIMARY KEY IDENTITY,
+  id_proyecto INT NOT NULL,
+  tipo_nivel NVARCHAR(3) CHECK (tipo_nivel IN ('NL1', 'NL2', 'NL3')) NOT NULL,
+  nombre_recompensa NVARCHAR(250) NOT NULL,
+  valor_recompensa FLOAT NOT NULL,   
+  FOREIGN KEY (id_proyecto) REFERENCES Proyectos(id_proyecto),
+);
+CREATE TABLE Contacto
+(
+  id_contacto INT NOT NULL PRIMARY KEY IDENTITY,
+  id_creador INT NOT NULL,
+  asunto NVARCHAR(100) NOT NULL,
+  mensaje NVARCHAR(MAX) NOT NULL,
+  fecha_envio DATETIME NOT NULL,
+  estado_aprobacion BIT,
+  respuesta NVARCHAR(MAX),
+  asunto_respuesta NVARCHAR(100),
+  id_administrador INT NOT NULL,
+  id_proyecto INT,
+  FOREIGN KEY (id_creador) REFERENCES Creador(id_creador),
+  FOREIGN KEY (id_proyecto) REFERENCES Proyectos(id_proyecto),
+  FOREIGN KEY (id_administrador) REFERENCES Creador(id_creador)
+);
+CREATE TABLE Reclamo
+(
+  id_reclamo INT NOT NULL PRIMARY KEY IDENTITY,
+  id_usuario INT NOT NULL,
+  mensaje NVARCHAR(MAX) NOT NULL,
+  tipo_reclamo NVARCHAR(3) CHECK (tipo_reclamo IN ('NL1', 'NL2', 'NL3')) NOT NULL,
+  fecha_reclamo DATETIME NOT NULL,
+  FOREIGN KEY (id_usuario) REFERENCES Usuarios(id_usuario)
+);
