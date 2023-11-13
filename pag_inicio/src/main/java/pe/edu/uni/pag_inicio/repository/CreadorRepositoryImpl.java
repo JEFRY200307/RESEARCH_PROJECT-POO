@@ -52,13 +52,14 @@ public class CreadorRepositoryImpl implements CreadorRepository {
 
         // Verificar que se obtuvo el id del creador
         if (idCreador != null) {
-            String contactoSql = "INSERT INTO Contacto (asunto, mensaje,id_administrador, id_proyecto, id_creador, estado_aprobacion, fecha_envio) VALUES (?, ?, ?, ?,?, 0, GETDATE())";
+            String contactoSql = "INSERT INTO Contacto (id_creador,asunto, mensaje,fecha_envio, estado_aprobacion,id_administrador, id_proyecto) VALUES (?, ?, ?,GETDATE(),NULL,?,?)";
             jdbcTemplate.update(contactoSql,
+                    idCreador,
                     solicitudModificacionDTO.getContactoDTO().getAsunto(),
                     solicitudModificacionDTO.getContactoDTO().getMensaje(),
-                    solicitudModificacionDTO.getIdproyectoDTO().getIdProyecto(),
                     idAdmin,
-                    idCreador);
+                    solicitudModificacionDTO.getIdproyectoDTO().getIdProyecto()
+                    );
         } else {
             // Manejar la situación en la que no se puede obtener el id del creador (puedes lanzar una excepción, loggear, etc.)
             // Aquí, simplemente imprimo un mensaje de error
