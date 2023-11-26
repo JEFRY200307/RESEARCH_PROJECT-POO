@@ -17,8 +17,10 @@ public class Proyectodto {
 	private Date fecha_fin;
 	private Boolean estado;
 	private float monto_objetivo;
+	private int aprobacion;
 	private String image_url;
 	private int id_usuario;
 	private int id_creador;
 	private String categoria;
+	private int id_administrador;
 }
