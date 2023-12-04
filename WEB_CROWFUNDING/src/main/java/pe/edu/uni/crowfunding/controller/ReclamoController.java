@@ -7,7 +7,8 @@ import pe.edu.uni.crowfunding.model.Reclamo;
 import pe.edu.uni.crowfunding.service.ReclamoService;
 
 @RestController
-@RequestMapping("/reclamo")
+@RequestMapping("/UniOpportunity/login/catalogo/reclamo")
+@CrossOrigin(origins = "http://localhost:3000")
 public class ReclamoController {
 
     @Autowired

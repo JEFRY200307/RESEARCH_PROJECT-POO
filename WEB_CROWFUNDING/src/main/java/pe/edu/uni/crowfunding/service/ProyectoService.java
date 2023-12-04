@@ -22,8 +22,7 @@ public class ProyectoService {
     public List<Proyecto> obtenerProyectosPorCategoria(String categoria) {
         return proyectoRepository.obtenerProyectosPorCategoria(categoria);
     }
-
-    public List<Proyecto> getAllProyectos() {
+    public List<IdproyectoDTO> getAllProyectos() {
         return proyectoRepository.findAllProyectos();
     }
     public  Proyecto crearProyecto (Proyecto proyecto){
@@ -36,5 +35,8 @@ public class ProyectoService {
 
     public List<IdproyectoDTO> getAllProyectorbyCreador(int idCreador){
         return  proyectoRepository.obtenerProyectosAprobadosPorCreador(idCreador);
+    }
+    public Proyecto obtenerProyectoPorId(int idProyecto){
+        return  proyectoRepository.obtenerProyectoPorId(idProyecto);
     }
 }

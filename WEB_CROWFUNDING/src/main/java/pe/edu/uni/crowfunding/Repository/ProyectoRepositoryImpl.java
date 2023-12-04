@@ -17,7 +17,6 @@ import java.sql.PreparedStatement;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Repository
 public class ProyectoRepositoryImpl implements ProyectoRepository{
@@ -59,10 +58,10 @@ public class ProyectoRepositoryImpl implements ProyectoRepository{
     @Override
     public List<Proyecto> obtenerProyectosPorCategoria(String categoria) {
         // Lógica para obtener proyectos por categoría desde la base de datos
-        String sql = "SELECT * FROM Proyectos WHERE categoria = ?";
+        String sql = "SELECT * FROM Proyectos WHERE categoria = ? AND aprobacion = 2";
         return jdbcTemplate.query(sql, new Object[]{categoria}, (rs, rowNum) ->
                 new Proyecto(
-                        rs.getInt("idproyecto"),
+                        rs.getInt("id_proyecto"),
                         rs.getString("titulo"),
                         rs.getString("descripcion"),
                         rs.getString("objetivos"),
@@ -79,7 +78,7 @@ public class ProyectoRepositoryImpl implements ProyectoRepository{
         );
     }
     @Override
-    public List<Proyecto> findAllProyectos() {
+    public List<Proyecto> findAllContenidoByProyectos() {
         String sql = "SELECT * FROM Proyectos";
         return jdbcTemplate.query(sql, (rs, rowNum) ->
                 new Proyecto(
@@ -97,6 +96,17 @@ public class ProyectoRepositoryImpl implements ProyectoRepository{
                         rs.getInt("id_usuario"),
                         rs.getString("categoria")
                 )
+        );
+    }
+    @Override
+    public List<IdproyectoDTO> findAllProyectos() {
+        String sql = "SELECT * FROM Proyectos WHERE aprobacion = 2";
+        return jdbcTemplate.query(sql, (rs, rowNum) ->
+                new IdproyectoDTO(
+                rs.getInt("id_proyecto"),
+                rs.getString("titulo"),
+                rs.getString("descripcion")
+                        )
         );
     }
     @Override
@@ -118,7 +128,7 @@ public class ProyectoRepositoryImpl implements ProyectoRepository{
         try {
             return jdbcTemplate.queryForObject(sql, new Object[]{idProyecto}, (rs, rowNum) ->
                     new Proyecto(
-                            rs.getInt("idproyecto"),
+                            rs.getInt("id_proyecto"),
                             rs.getString("titulo"),
                             rs.getString("descripcion"),
                             rs.getString("objetivos"),
@@ -186,14 +196,16 @@ public class ProyectoRepositoryImpl implements ProyectoRepository{
 
     @Override
     public List<IdproyectoDTO> obtenerProyectosAprobadosPorCreador(int idCreador) {
-        String sql = "SELECT id_proyecto, titulo,descripcion FROM Proyectos WHERE id_creador = ? AND aprobacion = 1";
+        String sql = "SELECT id_proyecto, titulo,descripcion FROM Proyectos WHERE id_usuario = ? AND aprobacion = 2";
 
-        return jdbcTemplate.query(sql, new Object[]{idCreador}, (rs, rowNum) -> {
+        List<IdproyectoDTO> proyectos =  jdbcTemplate.query(sql, new Object[]{idCreador}, (rs, rowNum) -> {
             IdproyectoDTO proyectoDTO = new IdproyectoDTO();
             proyectoDTO.setIdProyecto(rs.getInt("id_proyecto"));
             proyectoDTO.setTitulo(rs.getString("titulo"));
             proyectoDTO.setDescripcion(rs.getString("descripcion"));
             return proyectoDTO;
         });
+        return proyectos.isEmpty() ? null : proyectos;
     }
+
 }

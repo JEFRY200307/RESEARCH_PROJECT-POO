@@ -11,10 +11,11 @@ import pe.edu.uni.crowfunding.DTO.Mensajedto;
 import pe.edu.uni.crowfunding.model.*;
 import pe.edu.uni.crowfunding.service.*;
 
+import java.util.Collections;
 import java.util.List;
 
 @RestController
-@RequestMapping("/solicitud")
+@RequestMapping("/UniOpportunity/login/catalogo/solicitud")
 public class CreadorController {
 
     @Autowired
@@ -23,11 +24,9 @@ public class CreadorController {
     private SolicitudService solicitudService;
     @Autowired
     private MetodoPagoService metodoPagoService;
-    @Autowired
-    private  ReclamoService reclamoService;
 
     // Metodos de Proyecto
-    @PostMapping("/crearproyecto/{idUsuario}")
+    @PostMapping("/crearproyecto")
     public ResponseEntity<Mensajedto> crearProyecto(@PathVariable int idUsuario, @RequestBody Proyecto proyecto) {
         try {
             // Verificar si el usuario tiene un método de pago
@@ -44,8 +43,16 @@ public class CreadorController {
             return new ResponseEntity<>(new Mensajedto(-1, "Error: " + e.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-    @PostMapping("/actualizarproyecto/{id}")
-    public ResponseEntity<String> solicitarmodificion(@RequestBody Solicitud solicitud) {
+    @PostMapping("/todosLosProyectos/editarproyecto/{idProyecto}")
+    public ResponseEntity<String> obtenerDetallesProyecto(@RequestBody int idproyecto) {
+
+        // Llamar al servicio para solicitar la modificación del proyecto
+        proyectoService.obtenerProyectoPorId(idproyecto);
+
+        return new ResponseEntity<>("Solicitud de modificación exitosa", HttpStatus.OK);
+    }
+    @PostMapping("/todosLosProyectos/editarproyecto/{idProyecto}/modificar")
+    public ResponseEntity<String> solicitarmodificion(@PathVariable int idProyecto,@RequestBody Solicitud solicitud) {
 
         // Llamar al servicio para solicitar la modificación del proyecto
         solicitudService.solModProyecto(solicitud);
@@ -53,25 +60,19 @@ public class CreadorController {
         return new ResponseEntity<>("Solicitud de modificación exitosa", HttpStatus.OK);
     }
 
-    @GetMapping("/activos/{idCreador}")
-    public ResponseEntity<List<IdproyectoDTO>> obtenerProyectosActivosPorCreador(@PathVariable int idCreador) {
+    @GetMapping("/todosLosProyectos")
+    public ResponseEntity<?> obtenerProyectosActivosPorCreador(@PathVariable int idCreador) {
         List<IdproyectoDTO> proyectos = proyectoService.getAllProyectorbyCreador(idCreador);
-        if (proyectos.isEmpty()) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+
+        if (proyectos == null || proyectos.isEmpty()) {
+            String mensaje = "No hay ningún proyecto aprobado todavía.";
+            List<String> mensajeList = Collections.singletonList(mensaje);
+            return new ResponseEntity<>(mensajeList, HttpStatus.NOT_FOUND);
         }
+
         return new ResponseEntity<>(proyectos, HttpStatus.OK);
     }
-    @PostMapping("/crearReclamo/{idUsuario}")
-    public Mensajedto crearReclamo(@PathVariable int idUsuario,@RequestBody Reclamo reclamo) {
-        Mensajedto mensaje;
-        try {
-            reclamo.setIdusuario(idUsuario);
-            mensaje = reclamoService.crearReclamo(reclamo);
 
-        } catch (Exception e) {
-            mensaje = new Mensajedto(-1,"Error: "+ e.getMessage());
-        }
-        return mensaje;
-    }
+
 
 }

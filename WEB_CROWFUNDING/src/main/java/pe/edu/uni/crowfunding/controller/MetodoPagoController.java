@@ -9,7 +9,7 @@ import pe.edu.uni.crowfunding.model.MetodoPago;
 import pe.edu.uni.crowfunding.service.MetodoPagoService;
 
 @RestController
-@RequestMapping("/metodo-pago")
+@RequestMapping("/UniOpportunity/login/metodo-pago")
 public class MetodoPagoController {
 
     @Autowired

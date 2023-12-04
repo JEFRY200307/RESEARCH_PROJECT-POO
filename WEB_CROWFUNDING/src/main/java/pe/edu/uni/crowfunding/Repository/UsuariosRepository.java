@@ -2,6 +2,7 @@ package pe.edu.uni.crowfunding.Repository;
 
 
 import org.springframework.stereotype.Repository;
+import pe.edu.uni.crowfunding.DTO.CredencialesDTO;
 import pe.edu.uni.crowfunding.DTO.Mensajedto;
 import pe.edu.uni.crowfunding.model.Usuario;
 
@@ -15,6 +16,8 @@ public interface UsuariosRepository {
     List<Usuario> findByEsCreador(boolean esCreador);
 
     Usuario findById(int userId);
+
+    CredencialesDTO findByNombre(String nombre);
 
     Usuario save(Usuario usuario);
 

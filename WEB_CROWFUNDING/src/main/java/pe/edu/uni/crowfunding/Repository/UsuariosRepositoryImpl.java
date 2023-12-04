@@ -1,10 +1,10 @@
 package pe.edu.uni.crowfunding.Repository;
-import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
+import pe.edu.uni.crowfunding.DTO.CredencialesDTO;
 import pe.edu.uni.crowfunding.DTO.Mensajedto;
 import pe.edu.uni.crowfunding.model.Usuario;
 
@@ -63,6 +63,16 @@ public class UsuariosRepositoryImpl implements UsuariosRepository {
             usuario.setContrasena(resultSet.getString("contrasena"));
             return usuario;
         });
+    }
+    @Override
+    public CredencialesDTO findByNombre(String nombre) {
+        String sql = "SELECT * FROM Usuarios WHERE nombre = ?";
+        return jdbcTemplate.queryForObject(sql, new Object[]{nombre}, (rs, rowNum) ->
+                new CredencialesDTO(
+                        rs.getString("nombre"),
+                        rs.getString("contrasena")
+                )
+        );
     }
 
     @Override

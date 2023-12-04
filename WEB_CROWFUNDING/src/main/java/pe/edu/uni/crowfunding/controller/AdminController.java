@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import pe.edu.uni.crowfunding.DTO.IdproyectoDTO;
 import pe.edu.uni.crowfunding.DTO.MensajeAdminDTO;
 import pe.edu.uni.crowfunding.DTO.Mensajedto;
 import pe.edu.uni.crowfunding.model.*;
@@ -29,7 +30,7 @@ public class AdminController {
     private MetodoPagoService metodoPagoService;
 
     @GetMapping("/proyectos")
-    public List<Proyecto> getAllProyectos() {
+    public List<IdproyectoDTO> getAllProyectos() {
         return proyectoService.getAllProyectos();
     }
 

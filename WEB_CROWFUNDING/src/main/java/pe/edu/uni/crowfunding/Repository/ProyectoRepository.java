@@ -19,7 +19,9 @@ public interface ProyectoRepository {
     List<Proyecto> obtenerProyectosPorCategoria(String categoria);
 
 
-    List<Proyecto> findAllProyectos();
+    List<Proyecto> findAllContenidoByProyectos();
+
+    List<IdproyectoDTO> findAllProyectos();
 
     Mensajedto borrarProyecto(int id);
 
