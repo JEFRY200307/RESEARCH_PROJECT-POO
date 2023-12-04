@@ -1,3 +1,4 @@
+<<<<<<< HEAD:pag_inicio/src/main/java/pe/edu/uni/pag_inicio/controller/dto/ReclamoDto.java
 package pe.edu.uni.pag_inicio.controller.dto;
 
 import java.sql.Date;
@@ -16,3 +17,10 @@ public class ReclamoDto {
     private Date fecha_reclamo;
 
 }
+=======
+package pe.edu.uni.pag_inicio.dto;
+
+public class ReclamoDto {
+
+}
+>>>>>>> benjamin:pag_inicio/src/main/java/pe/edu/uni/pag_inicio/dto/ReclamoDto.java
