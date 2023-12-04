@@ -20,7 +20,6 @@ public class MetodoPagoService {
         this.metodoPagoRepository = metodoPagoRepository;
         this.usuariosService = usuariosService;
     }
-
     public void agregarMetodoPago(MetodoPago metodoPagoDto) {
         if (usuariosService.getUserById(metodoPagoDto.getIdUsuario()) != null) {
             metodoPagoRepository.saveMetodoPago(metodoPagoDto);

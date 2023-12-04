@@ -83,7 +83,7 @@ public class ProyectoRepositoryImpl implements ProyectoRepository{
         String sql = "SELECT * FROM Proyectos";
         return jdbcTemplate.query(sql, (rs, rowNum) ->
                 new Proyecto(
-                        rs.getInt("idproyecto"),
+                        rs.getInt("id_proyecto"),
                         rs.getString("titulo"),
                         rs.getString("descripcion"),
                         rs.getString("objetivos"),

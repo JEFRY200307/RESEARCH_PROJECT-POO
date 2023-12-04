@@ -22,7 +22,7 @@ class UsuariosController {
 
     @GetMapping("/{userId}")
     public Usuario getUsuarioById(@PathVariable int userId) {
-        return usuariosService.getUserById(Math.toIntExact(userId));
+        return usuariosService.getUserById(userId);
     }
 
     @GetMapping("/email/{email}")

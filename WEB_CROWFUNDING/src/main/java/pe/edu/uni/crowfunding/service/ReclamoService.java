@@ -30,9 +30,6 @@ public class ReclamoService {
     public Mensajedto borrarReclamo (int idreclamo){
         return  reclamoRepository.borrarReclamo(idreclamo);
     }
-    
-    
-    
-    
+
 }
 

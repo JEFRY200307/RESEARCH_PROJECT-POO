@@ -1,4 +1,5 @@
 package pe.edu.uni.crowfunding.Repository;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,8 +12,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Repository
-public class UsuariosRepositoryImpl implements UsuariosRepository{
+public class UsuariosRepositoryImpl implements UsuariosRepository {
     private final JdbcTemplate jdbcTemplate;
+
     @Autowired
     public UsuariosRepositoryImpl(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
@@ -32,6 +34,7 @@ public class UsuariosRepositoryImpl implements UsuariosRepository{
             return usuario;
         });
     }
+
     @Override
     public List<Usuario> findByEsCreador(boolean isCreador) {
         String sql = "SELECT * FROM Usuarios WHERE es_creador = ?";

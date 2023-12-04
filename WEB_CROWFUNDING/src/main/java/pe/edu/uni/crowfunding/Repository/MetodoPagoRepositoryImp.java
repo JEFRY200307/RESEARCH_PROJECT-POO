@@ -1,6 +1,7 @@
 package pe.edu.uni.crowfunding.Repository;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
@@ -8,8 +9,6 @@ import pe.edu.uni.crowfunding.model.MetodoPago;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
 import java.util.List;
 
 @Repository
@@ -20,42 +19,26 @@ public class MetodoPagoRepositoryImp implements MetodoPagoRepository{
     public MetodoPagoRepositoryImp(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
-
-    private void obtenerConexion() {
-        try{
-            conexion = jdbcTemplate.getDataSource().getConnection();
-        }catch (SQLException e){
-            throw new RuntimeException(e);
-        }
-    }
-    private void cerrarConexion(){
-        try {
-            conexion.close();
-            conexion = null;
-        }catch (SQLException e){
-            throw new RuntimeException(e);
-        }
-    }
     @Override
     @Transactional(propagation = Propagation.REQUIRES_NEW, rollbackFor = Exception.class)
     public int saveMetodoPago(MetodoPago metodoPago) {
-        int filasAfectadas;
-        try{
-            obtenerConexion();
-            String sql = "INSERT INTO MetodoPago VALUES( ?, ?, ?, ?, ?);";
-            PreparedStatement st = conexion.prepareStatement(sql);
-            st.setInt(1, metodoPago.getIdUsuario());
-            st.setString(2, metodoPago.getTipotarjeta());
-            st.setString(3, metodoPago.getNombretitular());
-            st.setDate(4, metodoPago.getFechaexpiracion());
-            st.setInt(5, metodoPago.getCvv());
-            filasAfectadas = st.executeUpdate();
-            st.close();
-            cerrarConexion();
-        }catch(SQLException e){
+        int filasAfectadas = 0;
+        try {
+            String sql = "INSERT INTO MetodoPago (id_usuario, tipo_tarjeta, nombre_titular, fecha_expiracion, cvv) VALUES (?, ?, ?, ?, ?)";
+
+            filasAfectadas = jdbcTemplate.update(
+                    sql,
+                    metodoPago.getIdUsuario(),
+                    metodoPago.getTipotarjeta(),
+                    metodoPago.getNombretitular(),
+                    metodoPago.getFechaexpiracion(),
+                    metodoPago.getCvv()
+            );
+        } catch (DataAccessException e) {
+            // Imprime o registra el error para diagnóstico
+            e.printStackTrace();
             throw new RuntimeException(e);
         }
-
         return filasAfectadas;
     }
     @Override

@@ -37,11 +37,7 @@ public class UsuariosService{
     public  List<Usuario> getAllCreador (){
         return  usuariosRepository.findByEsCreador(true);
     }
-    public List<Usuario> getAllUsers() {
-
-        return usuariosRepository.findAll();
-    }
-
+    public List<Usuario> getAllUsers() {return usuariosRepository.findAll();}
     public Mensajedto deleteUser(int userId) {
         // Agregar lógica para eliminar un usuario por su ID desde el repositorio
         return usuariosRepository.deleteById(userId);
